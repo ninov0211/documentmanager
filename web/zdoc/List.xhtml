@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ZdocListForm">
+
+        <p:panel header="Master Document">
+            <p:contextMenu id="ZdocDataTableContextMenu" for="datalist">  
+                <p:menuitem value="#{myBundle.Create}" onclick="document.getElementById('ZdocListForm:createButton').click();" icon="ui-icon-plus"/>
+                <p:menuitem value="#{myBundle.View}" onclick="document.getElementById('ZdocListForm:viewButton').click();" icon="ui-icon-search"/>
+                <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('ZdocListForm:editButton').click();" icon="ui-icon-pencil"/>
+                <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('ZdocListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                <p:separator/>
+                <p:menuitem value="#{myBundle.ZdocMenuItem_zuserId}" icon="ui-icon-search"  actionListener="#{zdocController.prepareZuserId}" update=":ZuserViewForm" oncomplete="PF('ZuserViewDialog').show()" disabled="#{empty zdocController.selected.zuserId}"/>  
+                <p:menuitem value="#{myBundle.ZdocMenuItem_zstatusdocId}" icon="ui-icon-search"  actionListener="#{zdocController.prepareZstatusdocId}" update=":ZstatusdocViewForm" oncomplete="PF('ZstatusdocViewDialog').show()" disabled="#{empty zdocController.selected.zstatusdocId}"/>  
+                <p:menuitem value="#{myBundle.ZdocMenuItem_zstatusId}" icon="ui-icon-search"  actionListener="#{zdocController.prepareZstatusId}" update=":ZstatusViewForm" oncomplete="PF('ZstatusViewDialog').show()" disabled="#{empty zdocController.selected.zstatusId}"/>  
+                <p:menuitem value="#{myBundle.ZdocMenuItem_zdocLineCollection}" icon="ui-icon-search"  action="#{zdocController.navigateZdocLineCollection}" disabled="#{empty zdocController.selected.zdocLineCollection}" ajax="false"/>  
+            </p:contextMenu>
+            <p:dataTable id="datalist"
+                         value="#{zdocController.items}"
+                         lazy="false"
+                         rowKey="#{item.zdocId}"
+                         var="item"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         selectionMode="single"
+                         selection="#{zdocController.selected}">
+                <!--
+                         To enable Lazy Loading, please copy/replace the following lines above,
+                         and be sure to replace the word HASH with the # symbol:
+                
+                         value="HASH{zdocController.lazyItems}"
+                         lazy="true"
+                         rowKey="HASH{item.zdocId}"  <<< Remove this line
+                -->
+
+
+                <p:ajax event="rowSelect"   update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZdocDataTableContextMenu" listener="#{zdocController.resetParents}"/>
+                <p:ajax event="rowUnselect" update="@form:createButton,@form:viewButton,@form:editButton,@form:deleteButton,@form:ZdocDataTableContextMenu" listener="#{zdocController.resetParents}"/>
+                <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton" listener="#{zdocController.resetParents}"/>
+                <p:ajax event="rowDblselect" onsuccess="document.getElementById('ZdocListForm:viewButton').click();"/>
+
+                <p:column sortBy="#{item.zdocId}" style="width:20px;">
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputText value="#{item.zdocId}"/>
+                </p:column>
+                
+                  <p:column style="width:120px;">
+                    <f:facet name="header">
+                        <h:outputText value="NoDraft"/>
+                    </f:facet>
+               
+                </p:column>
+                
+                 <p:column sortBy="#{item.tgl}" filterBy="#{item.tgl}" style="width:80px;">
+                    <f:facet name="header">
+                        <h:outputText value="Tanggal.Draft"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tgl}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+
+                <p:column sortBy="#{item.judul}" filterBy="#{item.judul}">
+                    <f:facet name="header">
+                        <h:outputText value="Judul Document"/>
+                    </f:facet>
+                    <h:outputText value="#{item.judul}"/>
+                </p:column>
+                
+                 <p:column sortBy="#{item.descript}" filterBy="#{item.descript}">
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet>
+                    <h:outputText value="#{item.descript}"/>
+                </p:column>
+
+                <p:column sortBy="#{item.name}" filterBy="#{item.name}">
+                    <f:facet name="header">
+                        <h:outputText value="File Name"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </p:column>
+
+
+                <p:column sortBy="#{item.reff}" filterBy="#{item.reff}">
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListZdocTitle_reff}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.reff}"/>
+                </p:column>
+
+
+               
+                
+                
+                 <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ACTION"/>
+                    </f:facet>
+                     <p:commandButton value="View"> </p:commandButton>
+                     <p:commandButton value="Print"> </p:commandButton>
+                </p:column>
+                
+                
+                 
+                <!--
+                                    <p:column sortBy="#{item.tgldraft}" filterBy="#{item.tgldraft}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_tgldraft}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tgldraft}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.nodraft}" filterBy="#{item.nodraft}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_nodraft}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nodraft}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.nomordocument}" filterBy="#{item.nomordocument}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_nomordocument}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nomordocument}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.revisi}" filterBy="#{item.revisi}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_revisi}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.revisi}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.revisinumber}" filterBy="#{item.revisinumber}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_revisinumber}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.revisinumber}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.tglrencanaberlaku}" filterBy="#{item.tglrencanaberlaku}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_tglrencanaberlaku}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tglrencanaberlaku}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.notadc}" filterBy="#{item.notadc}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_notadc}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.notadc}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.urgent}" filterBy="#{item.urgent}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_urgent}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.urgent}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zuserId.name}" filterBy="#{item.zuserId.name}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_zuserId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zuserId.name}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zstatusdocId.description}" filterBy="#{item.zstatusdocId.description}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_zstatusdocId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zstatusdocId.description}"/>
+                                    </p:column>
+                -->
+                <!--
+                                    <p:column sortBy="#{item.zstatusId.descript}" filterBy="#{item.zstatusId.descript}">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{myBundle.ListZdocTitle_zstatusId}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.zstatusId.descript}"/>
+                                    </p:column>
+                -->
+
+            </p:dataTable>
+
+            <p:commandButton id="createButton"                             icon="ui-icon-plus"   value="#{myBundle.Create}" actionListener="#{zdocController.prepareCreate}" update=":ZdocCreateForm" oncomplete="PF('ZdocCreateDialog').show()"/>
+            <p:commandButton id="viewButton"   style="visibility: hidden;" icon="ui-icon-search" value="#{myBundle.View}" update=":ZdocViewForm" oncomplete="PF('ZdocViewDialog').show()" disabled="#{empty zdocController.selected}"/>
+            <p:commandButton id="editButton"    icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":ZdocEditForm" oncomplete="PF('ZdocEditDialog').show()" disabled="#{empty zdocController.selected}"/>
+            <p:commandButton id="deleteButton" style="visibility: hidden;" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{zdocController.delete}" update=":growl,datalist" disabled="#{empty zdocController.selected}">
+                <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+            </p:commandButton>
+
+        </p:panel>
+        <ui:include src="/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZprivilageEditDlg" widgetVar="ZprivilageEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZprivilageTitle}" closeOnEscape="true">
+
+            <h:form id="ZprivilageEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zprivilageController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZprivilageLabel_zprivilageId}" for="zprivilageId" />
+                        <h:outputText id="zprivilageId" value="#{zprivilageController.selected.zprivilageId}" />
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{zprivilageController.selected.name}" title="#{myBundle.EditZprivilageTitle_name}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_zuserId}" for="zuserId" />
+                        <p:inputText id="zuserId" value="#{zprivilageController.selected.zuserId}" title="#{myBundle.EditZprivilageTitle_zuserId}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_zdocId}" for="zdocId" />
+                        <p:inputText id="zdocId" value="#{zprivilageController.selected.zdocId}" title="#{myBundle.EditZprivilageTitle_zdocId}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_viewdoc}" for="viewdoc" />
+                        <p:inputText id="viewdoc" value="#{zprivilageController.selected.viewdoc}" title="#{myBundle.EditZprivilageTitle_viewdoc}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_createdoc}" for="createdoc" />
+                        <p:inputText id="createdoc" value="#{zprivilageController.selected.createdoc}" title="#{myBundle.EditZprivilageTitle_createdoc}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_updatedoc}" for="updatedoc" />
+                        <p:inputText id="updatedoc" value="#{zprivilageController.selected.updatedoc}" title="#{myBundle.EditZprivilageTitle_updatedoc}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_deletedoc}" for="deletedoc" />
+                        <p:inputText id="deletedoc" value="#{zprivilageController.selected.deletedoc}" title="#{myBundle.EditZprivilageTitle_deletedoc}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZprivilageLabel_print}" for="print" />
+                        <p:inputText id="print" value="#{zprivilageController.selected.print}" title="#{myBundle.EditZprivilageTitle_print}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zprivilageController.save}" value="#{myBundle.Save}" update="display,:ZprivilageListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZprivilageEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZprivilageEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

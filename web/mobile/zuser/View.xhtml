@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ZuserViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewZuserTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ZuserListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ZuserViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{zuserController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_zuserId}"/>
+                            <h:outputText value="#{zuserController.selected.zuserId}" title="#{myBundle.ViewZuserTitle_zuserId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_name}"/>
+                            <h:outputText value="#{zuserController.selected.name}" title="#{myBundle.ViewZuserTitle_name}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_password}"/>
+                            <h:outputText value="#{zuserController.selected.password}" title="#{myBundle.ViewZuserTitle_password}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_zprivilageId}"/>
+                            <h:outputText value="#{zuserController.selected.zprivilageId}" title="#{myBundle.ViewZuserTitle_zprivilageId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_zdeptId}"/>
+                            <h:outputText value="#{zuserController.selected.zdeptId}" title="#{myBundle.ViewZuserTitle_zdeptId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_email}"/>
+                            <h:outputText value="#{zuserController.selected.email}" title="#{myBundle.ViewZuserTitle_email}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_level}"/>
+                            <h:outputText value="#{zuserController.selected.level}" title="#{myBundle.ViewZuserTitle_level}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_active}"/>
+                            <h:outputText value="#{zuserController.selected.active}" title="#{myBundle.ViewZuserTitle_active}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZuserLabel_levelsys}"/>
+                            <h:outputText value="#{zuserController.selected.levelsys}" title="#{myBundle.ViewZuserTitle_levelsys}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

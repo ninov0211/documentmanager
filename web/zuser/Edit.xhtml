@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZuserEditDlg" widgetVar="ZuserEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZuserTitle}" closeOnEscape="true">
+
+            <h:form id="ZuserEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zuserController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZuserLabel_zuserId}" for="zuserId" />
+                        <h:outputText id="zuserId" value="#{zuserController.selected.zuserId}" />
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{zuserController.selected.name}" title="#{myBundle.EditZuserTitle_name}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{zuserController.selected.password}" title="#{myBundle.EditZuserTitle_password}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zprivilageId}" for="zprivilageId" />
+                        <p:inputText id="zprivilageId" value="#{zuserController.selected.zprivilageId}" title="#{myBundle.EditZuserTitle_zprivilageId}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_zdeptId}" for="zdeptId" />
+                        <p:inputText id="zdeptId" value="#{zuserController.selected.zdeptId}" title="#{myBundle.EditZuserTitle_zdeptId}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{zuserController.selected.email}" title="#{myBundle.EditZuserTitle_email}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_level}" for="level" />
+                        <p:inputText id="level" value="#{zuserController.selected.level}" title="#{myBundle.EditZuserTitle_level}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_active}" for="active" />
+                        <p:inputText id="active" value="#{zuserController.selected.active}" title="#{myBundle.EditZuserTitle_active}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZuserLabel_levelsys}" for="levelsys" />
+                        <p:inputText id="levelsys" value="#{zuserController.selected.levelsys}" title="#{myBundle.EditZuserTitle_levelsys}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zuserController.save}" value="#{myBundle.Save}" update="display,:ZuserListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZuserEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZuserEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

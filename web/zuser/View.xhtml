@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZuserViewDlg" widgetVar="ZuserViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZuserTitle}" closeOnEscape="true">
+
+            <h:form id="ZuserViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zuserController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_zuserId}"/>
+                        <h:outputText value="#{zuserController.selected.zuserId}" title="#{myBundle.ViewZuserTitle_zuserId}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_name}"/>
+                        <h:outputText value="#{zuserController.selected.name}" title="#{myBundle.ViewZuserTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_password}"/>
+                        <h:outputText value="#{zuserController.selected.password}" title="#{myBundle.ViewZuserTitle_password}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_zprivilageId}"/>
+                        <h:outputText value="#{zuserController.selected.zprivilageId}" title="#{myBundle.ViewZuserTitle_zprivilageId}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_zdeptId}"/>
+                        <h:outputText value="#{zuserController.selected.zdeptId}" title="#{myBundle.ViewZuserTitle_zdeptId}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_email}"/>
+                        <h:outputText value="#{zuserController.selected.email}" title="#{myBundle.ViewZuserTitle_email}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_level}"/>
+                        <h:outputText value="#{zuserController.selected.level}" title="#{myBundle.ViewZuserTitle_level}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_active}"/>
+                        <h:outputText value="#{zuserController.selected.active}" title="#{myBundle.ViewZuserTitle_active}"/>
+
+                        <h:outputText value="#{myBundle.ViewZuserLabel_levelsys}"/>
+                        <h:outputText value="#{zuserController.selected.levelsys}" title="#{myBundle.ViewZuserTitle_levelsys}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZuserViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

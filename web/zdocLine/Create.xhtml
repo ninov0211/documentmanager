@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocLineCreateDlg" widgetVar="ZdocLineCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdocLineTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocLineCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdocLineController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_zdocLineId}" for="zdocLineId" />
+                        <p:inputText id="zdocLineId" value="#{zdocLineController.selected.zdocLineId}" title="#{myBundle.CreateZdocLineTitle_zdocLineId}" required="true" requiredMessage="#{myBundle.CreateZdocLineRequiredMessage_zdocLineId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_keterangan}" for="keterangan" />
+                        <p:inputText id="keterangan" value="#{zdocLineController.selected.keterangan}" title="#{myBundle.CreateZdocLineTitle_keterangan}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_nomor}" for="nomor" />
+                        <p:inputText id="nomor" value="#{zdocLineController.selected.nomor}" title="#{myBundle.CreateZdocLineTitle_nomor}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_pic}" for="pic" />
+                        <p:inputText id="pic" value="#{zdocLineController.selected.pic}" title="#{myBundle.CreateZdocLineTitle_pic}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_respond}" for="respond" />
+                        <p:inputText id="respond" value="#{zdocLineController.selected.respond}" title="#{myBundle.CreateZdocLineTitle_respond}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_tgl}" for="tgl" />
+                        <p:calendar id="tgl" pattern="MM/dd/yyyy" value="#{zdocLineController.selected.tgl}" title="#{myBundle.CreateZdocLineTitle_tgl}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLineLabel_zdocId}" for="zdocId" />
+                        <p:selectOneMenu id="zdocId" value="#{zdocLineController.selected.zdocId}"  converter="zdocConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zdocController.items}"
+                                           var="zdocIdItem"
+                                           itemValue="#{zdocIdItem}"
+                                           itemLabel="#{zdocIdItem.descript.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocLineController.saveNew}" value="#{myBundle.Save}" update="display,:ZdocLineListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocLineCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocLineCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

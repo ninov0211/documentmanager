@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ZdocLineEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditZdocLineTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ZdocLineListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ZdocLineEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{zdocLineController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditZdocLineLabel_zdocLineId}" for="zdocLineId" />
+                            <h:outputText id="zdocLineId" value="#{zdocLineController.selected.zdocLineId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZdocLineLabel_keterangan}" for="keterangan" />
+                            <p:inputText id="keterangan" value="#{zdocLineController.selected.keterangan}" title="#{myBundle.EditZdocLineTitle_keterangan}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZdocLineLabel_nomor}" for="nomor" />
+                            <p:inputText id="nomor" value="#{zdocLineController.selected.nomor}" title="#{myBundle.EditZdocLineTitle_nomor}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZdocLineLabel_pic}" for="pic" />
+                            <p:inputText id="pic" value="#{zdocLineController.selected.pic}" title="#{myBundle.EditZdocLineTitle_pic}" size="20" maxlength="20"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZdocLineLabel_respond}" for="respond" />
+                            <p:inputText id="respond" value="#{zdocLineController.selected.respond}" title="#{myBundle.EditZdocLineTitle_respond}" size="20" maxlength="20"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZdocLineLabel_tgl}" for="tgl" />
+                            <p:calendar id="tgl" pattern="MM/dd/yyyy" value="#{zdocLineController.selected.tgl}" title="#{myBundle.EditZdocLineTitle_tgl}"  showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZdocLineLabel_zdocId}" for="zdocId" />
+                            <p:selectOneMenu id="zdocId" value="#{zdocLineController.selected.zdocId}"  converter="zdocConverter">
+                                <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{zdocController.items}"
+                                               var="zdocIdItem"
+                                               itemValue="#{zdocIdItem}"
+                                               itemLabel="#{zdocIdItem.descript.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{zdocLineController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ZdocLineListPage:ZdocLineListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ZdocLineListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ZprivilageCreatePage" lazy="true">
+        <pm:header title="#{myBundle.CreateZprivilageTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ZprivilageListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ZprivilageCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zprivilageController.selected != null}">
+                    <p:outputPanel>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zprivilageId}" for="zprivilageId" />
+                            <p:inputText id="zprivilageId" value="#{zprivilageController.selected.zprivilageId}" title="#{myBundle.CreateZprivilageTitle_zprivilageId}" required="true" requiredMessage="#{myBundle.CreateZprivilageRequiredMessage_zprivilageId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{zprivilageController.selected.name}" title="#{myBundle.CreateZprivilageTitle_name}" size="20" maxlength="20"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zuserId}" for="zuserId" />
+                            <p:inputText id="zuserId" value="#{zprivilageController.selected.zuserId}" title="#{myBundle.CreateZprivilageTitle_zuserId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_zdocId}" for="zdocId" />
+                            <p:inputText id="zdocId" value="#{zprivilageController.selected.zdocId}" title="#{myBundle.CreateZprivilageTitle_zdocId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_viewdoc}" for="viewdoc" />
+                            <p:inputText id="viewdoc" value="#{zprivilageController.selected.viewdoc}" title="#{myBundle.CreateZprivilageTitle_viewdoc}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_createdoc}" for="createdoc" />
+                            <p:inputText id="createdoc" value="#{zprivilageController.selected.createdoc}" title="#{myBundle.CreateZprivilageTitle_createdoc}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_updatedoc}" for="updatedoc" />
+                            <p:inputText id="updatedoc" value="#{zprivilageController.selected.updatedoc}" title="#{myBundle.CreateZprivilageTitle_updatedoc}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_deletedoc}" for="deletedoc" />
+                            <p:inputText id="deletedoc" value="#{zprivilageController.selected.deletedoc}" title="#{myBundle.CreateZprivilageTitle_deletedoc}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.CreateZprivilageLabel_print}" for="print" />
+                            <p:inputText id="print" value="#{zprivilageController.selected.print}" title="#{myBundle.CreateZprivilageTitle_print}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{zprivilageController.saveNew}" value="#{myBundle.Save}" update="display,:ZprivilageListPage:ZprivilageListForm:datalist,:growl" action="#{mobilePageController.navigateWithHistory('pm:ZprivilageListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

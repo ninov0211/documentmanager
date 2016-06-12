@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZstatusdocCreateDlg" widgetVar="ZstatusdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZstatusdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZstatusdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zstatusdocController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZstatusdocLabel_zstatusdocId}" for="zstatusdocId" />
+                        <p:inputText id="zstatusdocId" value="#{zstatusdocController.selected.zstatusdocId}" title="#{myBundle.CreateZstatusdocTitle_zstatusdocId}" required="true" requiredMessage="#{myBundle.CreateZstatusdocRequiredMessage_zstatusdocId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZstatusdocLabel_description}" for="description" />
+                        <p:inputText id="description" value="#{zstatusdocController.selected.description}" title="#{myBundle.CreateZstatusdocTitle_description}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZstatusdocLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{zstatusdocController.selected.name}" title="#{myBundle.CreateZstatusdocTitle_name}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zstatusdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZstatusdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZstatusdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZstatusdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ZstatusEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditZstatusTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ZstatusListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ZstatusEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{zstatusController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditZstatusLabel_zstatusId}" for="zstatusId" />
+                            <h:outputText id="zstatusId" value="#{zstatusController.selected.zstatusId}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZstatusLabel_descript}" for="descript" />
+                            <p:inputText id="descript" value="#{zstatusController.selected.descript}" title="#{myBundle.EditZstatusTitle_descript}" required="true" requiredMessage="#{myBundle.EditZstatusRequiredMessage_descript}" size="50" maxlength="50"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditZstatusLabel_name}" for="name" />
+                            <p:inputText id="name" value="#{zstatusController.selected.name}" title="#{myBundle.EditZstatusTitle_name}" size="20" maxlength="20"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{zstatusController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:ZstatusListPage:ZstatusListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:ZstatusListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

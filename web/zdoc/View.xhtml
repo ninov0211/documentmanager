@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocViewDlg" widgetVar="ZdocViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zdocController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_zdocId}"/>
+                        <h:outputText value="#{zdocController.selected.zdocId}" title="#{myBundle.ViewZdocTitle_zdocId}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_descript}"/>
+                        <h:outputText value="#{zdocController.selected.descript}" title="#{myBundle.ViewZdocTitle_descript}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_judul}"/>
+                        <h:outputText value="#{zdocController.selected.judul}" title="#{myBundle.ViewZdocTitle_judul}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_name}"/>
+                        <h:outputText value="#{zdocController.selected.name}" title="#{myBundle.ViewZdocTitle_name}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_reff}"/>
+                        <h:outputText value="#{zdocController.selected.reff}" title="#{myBundle.ViewZdocTitle_reff}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_tgl}"/>
+                        <h:outputText value="#{zdocController.selected.tgl}" title="#{myBundle.ViewZdocTitle_tgl}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_tgldraft}"/>
+                        <h:outputText value="#{zdocController.selected.tgldraft}" title="#{myBundle.ViewZdocTitle_tgldraft}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_nodraft}"/>
+                        <h:outputText value="#{zdocController.selected.nodraft}" title="#{myBundle.ViewZdocTitle_nodraft}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_nomordocument}"/>
+                        <h:outputText value="#{zdocController.selected.nomordocument}" title="#{myBundle.ViewZdocTitle_nomordocument}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_revisi}"/>
+                        <h:outputText value="#{zdocController.selected.revisi}" title="#{myBundle.ViewZdocTitle_revisi}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_revisinumber}"/>
+                        <h:outputText value="#{zdocController.selected.revisinumber}" title="#{myBundle.ViewZdocTitle_revisinumber}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_tglrencanaberlaku}"/>
+                        <h:outputText value="#{zdocController.selected.tglrencanaberlaku}" title="#{myBundle.ViewZdocTitle_tglrencanaberlaku}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_notadc}"/>
+                        <h:outputText value="#{zdocController.selected.notadc}" title="#{myBundle.ViewZdocTitle_notadc}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_urgent}"/>
+                        <h:outputText value="#{zdocController.selected.urgent}" title="#{myBundle.ViewZdocTitle_urgent}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_zuserId}"/>
+                        <h:outputText value="#{zdocController.selected.zuserId.name}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_zstatusdocId}"/>
+                        <h:outputText value="#{zdocController.selected.zstatusdocId.description}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLabel_zstatusId}"/>
+                        <h:outputText value="#{zdocController.selected.zstatusId.descript}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZdocViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

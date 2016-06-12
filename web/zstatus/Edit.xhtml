@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZstatusEditDlg" widgetVar="ZstatusEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZstatusTitle}" closeOnEscape="true">
+
+            <h:form id="ZstatusEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zstatusController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZstatusLabel_zstatusId}" for="zstatusId" />
+                        <h:outputText id="zstatusId" value="#{zstatusController.selected.zstatusId}" />
+
+                        <p:outputLabel value="#{myBundle.EditZstatusLabel_descript}" for="descript" />
+                        <p:inputText id="descript" value="#{zstatusController.selected.descript}" title="#{myBundle.EditZstatusTitle_descript}" required="true" requiredMessage="#{myBundle.EditZstatusRequiredMessage_descript}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditZstatusLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{zstatusController.selected.name}" title="#{myBundle.EditZstatusTitle_name}" size="20" maxlength="20"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zstatusController.save}" value="#{myBundle.Save}" update="display,:ZstatusListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZstatusEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZstatusEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

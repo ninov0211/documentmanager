@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="ZdocLineViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewZdocLineTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:ZdocLineListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="ZdocLineViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{zdocLineController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_zdocLineId}"/>
+                            <h:outputText value="#{zdocLineController.selected.zdocLineId}" title="#{myBundle.ViewZdocLineTitle_zdocLineId}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_keterangan}"/>
+                            <h:outputText value="#{zdocLineController.selected.keterangan}" title="#{myBundle.ViewZdocLineTitle_keterangan}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_nomor}"/>
+                            <h:outputText value="#{zdocLineController.selected.nomor}" title="#{myBundle.ViewZdocLineTitle_nomor}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_pic}"/>
+                            <h:outputText value="#{zdocLineController.selected.pic}" title="#{myBundle.ViewZdocLineTitle_pic}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_respond}"/>
+                            <h:outputText value="#{zdocLineController.selected.respond}" title="#{myBundle.ViewZdocLineTitle_respond}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_tgl}"/>
+                            <h:outputText value="#{zdocLineController.selected.tgl}" title="#{myBundle.ViewZdocLineTitle_tgl}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewZdocLineLabel_zdocId}"/>
+                            <h:outputText value="#{zdocLineController.selected.zdocId.descript}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

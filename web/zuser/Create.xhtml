@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZuserCreateDlg" widgetVar="ZuserCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZuserTitle}" closeOnEscape="true">
+
+            <h:form id="ZuserCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zuserController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_zuserId}" for="zuserId" />
+                        <p:inputText id="zuserId" value="#{zuserController.selected.zuserId}" title="#{myBundle.CreateZuserTitle_zuserId}" required="true" requiredMessage="#{myBundle.CreateZuserRequiredMessage_zuserId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{zuserController.selected.name}" title="#{myBundle.CreateZuserTitle_name}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{zuserController.selected.password}" title="#{myBundle.CreateZuserTitle_password}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_zprivilageId}" for="zprivilageId" />
+                        <p:inputText id="zprivilageId" value="#{zuserController.selected.zprivilageId}" title="#{myBundle.CreateZuserTitle_zprivilageId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_zdeptId}" for="zdeptId" />
+                        <p:inputText id="zdeptId" value="#{zuserController.selected.zdeptId}" title="#{myBundle.CreateZuserTitle_zdeptId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{zuserController.selected.email}" title="#{myBundle.CreateZuserTitle_email}" size="30" maxlength="30"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_level}" for="level" />
+                        <p:inputText id="level" value="#{zuserController.selected.level}" title="#{myBundle.CreateZuserTitle_level}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_active}" for="active" />
+                        <p:inputText id="active" value="#{zuserController.selected.active}" title="#{myBundle.CreateZuserTitle_active}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZuserLabel_levelsys}" for="levelsys" />
+                        <p:inputText id="levelsys" value="#{zuserController.selected.levelsys}" title="#{myBundle.CreateZuserTitle_levelsys}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zuserController.saveNew}" value="#{myBundle.Save}" update="display,:ZuserListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZuserCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZuserCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

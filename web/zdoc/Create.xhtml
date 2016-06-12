@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocCreateDlg" widgetVar="ZdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{zdocController.selected != null}">
+                    <p:panelGrid columns="4" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_zdocId}" for="zdocId" />
+                        <p:inputText id="zdocId" value="#{zdocController.selected.zdocId}" title="#{myBundle.CreateZdocTitle_zdocId}" required="true" requiredMessage="#{myBundle.CreateZdocRequiredMessage_zdocId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_descript}" for="descript" />
+                        <p:inputText id="descript" value="#{zdocController.selected.descript}" title="#{myBundle.CreateZdocTitle_descript}" size="40" maxlength="40"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_judul}" for="judul" />
+                        <p:inputText id="judul" value="#{zdocController.selected.judul}" title="#{myBundle.CreateZdocTitle_judul}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{zdocController.selected.name}" title="#{myBundle.CreateZdocTitle_name}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_reff}" for="reff" />
+                        <p:inputText id="reff" value="#{zdocController.selected.reff}" title="#{myBundle.CreateZdocTitle_reff}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_tgl}" for="tgl" />
+                        <p:calendar id="tgl" pattern="MM/dd/yyyy" value="#{zdocController.selected.tgl}" title="#{myBundle.CreateZdocTitle_tgl}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_tgldraft}" for="tgldraft" />
+                        <p:calendar id="tgldraft" pattern="MM/dd/yyyy" value="#{zdocController.selected.tgldraft}" title="#{myBundle.CreateZdocTitle_tgldraft}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_nodraft}" for="nodraft" />
+                        <p:inputText id="nodraft" value="#{zdocController.selected.nodraft}" title="#{myBundle.CreateZdocTitle_nodraft}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_nomordocument}" for="nomordocument" />
+                        <p:inputText id="nomordocument" value="#{zdocController.selected.nomordocument}" title="#{myBundle.CreateZdocTitle_nomordocument}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_revisi}" for="revisi" />
+                        <p:inputText id="revisi" value="#{zdocController.selected.revisi}" title="#{myBundle.CreateZdocTitle_revisi}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_revisinumber}" for="revisinumber" />
+                        <p:inputText id="revisinumber" value="#{zdocController.selected.revisinumber}" title="#{myBundle.CreateZdocTitle_revisinumber}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_tglrencanaberlaku}" for="tglrencanaberlaku" />
+                        <p:calendar id="tglrencanaberlaku" pattern="MM/dd/yyyy" value="#{zdocController.selected.tglrencanaberlaku}" title="#{myBundle.CreateZdocTitle_tglrencanaberlaku}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_notadc}" for="notadc" />
+                        <p:inputText id="notadc" value="#{zdocController.selected.notadc}" title="#{myBundle.CreateZdocTitle_notadc}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_urgent}" for="urgent" />
+                        <p:inputText id="urgent" value="#{zdocController.selected.urgent}" title="#{myBundle.CreateZdocTitle_urgent}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_zuserId}" for="zuserId" />
+                        <p:selectOneMenu id="zuserId" value="#{zdocController.selected.zuserId}"  converter="zuserConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zuserController.items}"
+                                           var="zuserIdItem"
+                                           itemValue="#{zuserIdItem}"
+                                           itemLabel="#{zuserIdItem.name.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_zstatusdocId}" for="zstatusdocId" />
+                        <p:selectOneMenu id="zstatusdocId" value="#{zdocController.selected.zstatusdocId}"  converter="zstatusdocConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zstatusdocController.items}"
+                                           var="zstatusdocIdItem"
+                                           itemValue="#{zstatusdocIdItem}"
+                                           itemLabel="#{zstatusdocIdItem.description.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="#{myBundle.CreateZdocLabel_zstatusId}" for="zstatusId" />
+                        <p:selectOneMenu id="zstatusId" value="#{zdocController.selected.zstatusId}"  converter="zstatusConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zstatusController.items}"
+                                           var="zstatusIdItem"
+                                           itemValue="#{zstatusIdItem}"
+                                           itemLabel="#{zstatusIdItem.descript.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                      <p:fileUpload value="#{fileUploadView.file}" mode="simple"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

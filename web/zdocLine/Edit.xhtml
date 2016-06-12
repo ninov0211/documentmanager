@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZdocLineEditDlg" widgetVar="ZdocLineEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZdocLineTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocLineEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{zdocLineController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZdocLineLabel_zdocLineId}" for="zdocLineId" />
+                        <h:outputText id="zdocLineId" value="#{zdocLineController.selected.zdocLineId}" />
+
+                        <p:outputLabel value="#{myBundle.EditZdocLineLabel_keterangan}" for="keterangan" />
+                        <p:inputText id="keterangan" value="#{zdocLineController.selected.keterangan}" title="#{myBundle.EditZdocLineTitle_keterangan}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.EditZdocLineLabel_nomor}" for="nomor" />
+                        <p:inputText id="nomor" value="#{zdocLineController.selected.nomor}" title="#{myBundle.EditZdocLineTitle_nomor}"/>
+
+                        <p:outputLabel value="#{myBundle.EditZdocLineLabel_pic}" for="pic" />
+                        <p:inputText id="pic" value="#{zdocLineController.selected.pic}" title="#{myBundle.EditZdocLineTitle_pic}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditZdocLineLabel_respond}" for="respond" />
+                        <p:inputText id="respond" value="#{zdocLineController.selected.respond}" title="#{myBundle.EditZdocLineTitle_respond}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditZdocLineLabel_tgl}" for="tgl" />
+                        <p:calendar id="tgl" pattern="MM/dd/yyyy" value="#{zdocLineController.selected.tgl}" title="#{myBundle.EditZdocLineTitle_tgl}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditZdocLineLabel_zdocId}" for="zdocId" />
+                        <p:selectOneMenu id="zdocId" value="#{zdocLineController.selected.zdocId}"  converter="zdocConverter">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{zdocController.items}"
+                                           var="zdocIdItem"
+                                           itemValue="#{zdocIdItem}"
+                                           itemLabel="#{zdocIdItem.descript.toString()}"
+                                           />
+
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{zdocLineController.save}" value="#{myBundle.Save}" update="display,:ZdocLineListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZdocLineEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZdocLineEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

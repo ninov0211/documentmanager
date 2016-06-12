@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZtdocCreateDlg" widgetVar="ZtdocCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateZtdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZtdocCreateForm">
+
+                <h:panelGroup id="display" rendered="#{ztdocController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateZtdocLabel_ztdocId}" for="ztdocId" />
+                        <p:inputText id="ztdocId" value="#{ztdocController.selected.ztdocId}" title="#{myBundle.CreateZtdocTitle_ztdocId}" required="true" requiredMessage="#{myBundle.CreateZtdocRequiredMessage_ztdocId}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZtdocLabel_groupid}" for="groupid" />
+                        <p:inputText id="groupid" value="#{ztdocController.selected.groupid}" title="#{myBundle.CreateZtdocTitle_groupid}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZtdocLabel_typeid}" for="typeid" />
+                        <p:inputText id="typeid" value="#{ztdocController.selected.typeid}" title="#{myBundle.CreateZtdocTitle_typeid}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZtdocLabel_namadocument}" for="namadocument" />
+                        <p:inputText id="namadocument" value="#{ztdocController.selected.namadocument}" title="#{myBundle.CreateZtdocTitle_namadocument}" size="40" maxlength="40"/>
+
+                        <p:outputLabel value="#{myBundle.CreateZtdocLabel_zdepId}" for="zdepId" />
+                        <p:inputText id="zdepId" value="#{ztdocController.selected.zdepId}" title="#{myBundle.CreateZtdocTitle_zdepId}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ztdocController.saveNew}" value="#{myBundle.Save}" update="display,:ZtdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZtdocCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZtdocCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

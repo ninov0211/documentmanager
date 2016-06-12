@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ZtdocEditDlg" widgetVar="ZtdocEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditZtdocTitle}" closeOnEscape="true">
+
+            <h:form id="ZtdocEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{ztdocController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditZtdocLabel_ztdocId}" for="ztdocId" />
+                        <h:outputText id="ztdocId" value="#{ztdocController.selected.ztdocId}" />
+
+                        <p:outputLabel value="#{myBundle.EditZtdocLabel_groupid}" for="groupid" />
+                        <p:inputText id="groupid" value="#{ztdocController.selected.groupid}" title="#{myBundle.EditZtdocTitle_groupid}" size="10" maxlength="10"/>
+
+                        <p:outputLabel value="#{myBundle.EditZtdocLabel_typeid}" for="typeid" />
+                        <p:inputText id="typeid" value="#{ztdocController.selected.typeid}" title="#{myBundle.EditZtdocTitle_typeid}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditZtdocLabel_namadocument}" for="namadocument" />
+                        <p:inputText id="namadocument" value="#{ztdocController.selected.namadocument}" title="#{myBundle.EditZtdocTitle_namadocument}" size="40" maxlength="40"/>
+
+                        <p:outputLabel value="#{myBundle.EditZtdocLabel_zdepId}" for="zdepId" />
+                        <p:inputText id="zdepId" value="#{ztdocController.selected.zdepId}" title="#{myBundle.EditZtdocTitle_zdepId}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ztdocController.save}" value="#{myBundle.Save}" update="display,:ZtdocListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ZtdocEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ZtdocEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

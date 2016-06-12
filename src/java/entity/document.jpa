@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" v="1.5.4" xs="false" id="_14657412288781" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity xre="false" sm="false" abs="false" class="Ztdoc" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412290172">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="groupid" id="_146574122918811">
+                <jpa:column name="GROUPID" unique="false" nullable="true" insertable="true" updatable="true" table="ZTDOC" length="10"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="typeid" id="_146574122929912">
+                <jpa:column name="TYPEID" unique="false" nullable="true" insertable="true" updatable="true" table="ZTDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="namadocument" id="_146574122929913">
+                <jpa:column name="NAMADOCUMENT" unique="false" nullable="true" insertable="true" updatable="true" table="ZTDOC" length="40"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="zdepId" id="_146574122929914">
+                <jpa:column name="ZDEP_ID" unique="false" nullable="true" insertable="true" updatable="true" table="ZTDOC"/>
+            </basic>
+            <jpa:id attribute-type="Integer" visibile="true" name="ztdocId" id="_146574122918810">
+                <jpa:column name="ZTDOC_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZTDOC"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZTDOC"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="Zdoc" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291683">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="descript" id="_146574122929916">
+                <jpa:column name="DESCRIPT" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="40"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="judul" id="_146574122929917">
+                <jpa:column name="JUDUL" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="name" id="_146574122929918">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="reff" id="_146574122929919">
+                <jpa:column name="REFF" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="java.util.Date" visibile="true" name="tgl" id="_146574122929920">
+                <jpa:column name="TGL" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic optional="true" attribute-type="java.util.Date" visibile="true" name="tgldraft" id="_146574122929921">
+                <jpa:column name="TGLDRAFT" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="nodraft" id="_146574122929922">
+                <jpa:column name="NODRAFT" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="nomordocument" id="_146574122929923">
+                <jpa:column name="NOMORDOCUMENT" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="revisi" id="_146574122929924">
+                <jpa:column name="REVISI" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="revisinumber" id="_146574122930025">
+                <jpa:column name="REVISINUMBER" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC"/>
+            </basic>
+            <basic optional="true" attribute-type="java.util.Date" visibile="true" name="tglrencanaberlaku" id="_146574122930026">
+                <jpa:column name="TGLRENCANABERLAKU" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="notadc" id="_146574122930027">
+                <jpa:column name="NOTADC" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="urgent" id="_146574122930028">
+                <jpa:column name="URGENT" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC"/>
+            </basic>
+            <basic attribute-type="int" visibile="true" name="rdistribusi" id="_146574408572790">
+                <jpa:column name="rdistribusi" unique="false" nullable="true" insertable="true" updatable="true" length="255"/>
+            </basic>
+            <many-to-one primaryKey="false" connected-entity-id="_14657412291689" connected-attribute-id="_146574122930369" visibile="true" name="zstatusId" id="_146574122930029">
+                <join-column name="ZSTATUS_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_14657412291685" connected-attribute-id="_146574122930245" visibile="true" name="zstatusdocId" id="_146574122930030">
+                <join-column name="ZSTATUSDOC_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <many-to-one primaryKey="false" connected-entity-id="_14657412291686" connected-attribute-id="_146574122930255" visibile="true" name="zuserId" id="_146574122930031">
+                <join-column name="ZUSER_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_14657412291688" connected-attribute-id="_146574122930365" visibile="true" name="zdocLineCollection" id="_146574122930132"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="zdocId" id="_146574122929915">
+                <jpa:column name="ZDOC_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZDOC"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZDOC"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="Zprivilage" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291684">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="name" id="_146574122930134">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="zuserId" id="_146574122930135">
+                <jpa:column name="ZUSER_ID" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="zdocId" id="_146574122930136">
+                <jpa:column name="ZDOC_ID" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="viewdoc" id="_146574122930137">
+                <jpa:column name="VIEWDOC" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="createdoc" id="_146574122930138">
+                <jpa:column name="CREATEDOC" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="updatedoc" id="_146574122930139">
+                <jpa:column name="UPDATEDOC" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="deletedoc" id="_146574122930140">
+                <jpa:column name="DELETEDOC" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="print" id="_146574122930141">
+                <jpa:column name="PRINT" unique="false" nullable="true" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </basic>
+            <jpa:id attribute-type="Integer" visibile="true" name="zprivilageId" id="_146574122930133">
+                <jpa:column name="ZPRIVILAGE_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZPRIVILAGE"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZPRIVILAGE"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="Zstatusdoc" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291685">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="description" id="_146574122930143">
+                <jpa:column name="DESCRIPTION" unique="false" nullable="true" insertable="true" updatable="true" table="ZSTATUSDOC" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="name" id="_146574122930244">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ZSTATUSDOC" length="20"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_14657412291683" connected-attribute-id="_146574122930030" visibile="true" name="zdocCollection" id="_146574122930245"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="zstatusdocId" id="_146574122930142">
+                <jpa:column name="ZSTATUSDOC_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZSTATUSDOC"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZSTATUSDOC"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="Zuser" superclassId="_14657412291687" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291686">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="name" id="_146574122930247">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="password" id="_146574122930248">
+                <jpa:column name="PASSWORD" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="zprivilageId" id="_146574122930249">
+                <jpa:column name="ZPRIVILAGE_ID" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="zdeptid" id="_146574122930250">
+                <jpa:column name="ZDEPT_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZUSER"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="email" id="_146574122930251">
+                <jpa:column name="EMAIL" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER" length="30"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="level" id="_146574122930252">
+                <jpa:column name="LEVEL" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER"/>
+            </basic>
+            <basic optional="true" attribute-type="Character" visibile="true" name="active" id="_146574122930253">
+                <jpa:column name="ACTIVE" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="levelsys" id="_146574122930254">
+                <jpa:column name="LEVELSYS" unique="false" nullable="true" insertable="true" updatable="true" table="ZUSER"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_14657412291683" connected-attribute-id="_146574122930031" visibile="true" name="zdocCollection" id="_146574122930255"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="zuserId" id="_146574122930246">
+                <jpa:column name="ZUSER_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZUSER"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZUSER"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="Zdept" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291687">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="name" id="_146574122930257">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ZDEPT" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="descrip" id="_146574122930258">
+                <jpa:column name="DESCRIP" unique="false" nullable="true" insertable="true" updatable="true" table="ZDEPT" length="50"/>
+            </basic>
+            <jpa:id attribute-type="Integer" visibile="true" name="zdeptid" id="_146574122930256">
+                <jpa:column name="ZDEPT_ID" unique="true" nullable="false" insertable="true" updatable="true" table="ZDEPT"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZDEPT"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="ZdocLine" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291688">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="keterangan" id="_146574122930260">
+                <jpa:column name="KETERANGAN" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC_LINE" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="Integer" visibile="true" name="nomor" id="_146574122930261">
+                <jpa:column name="NOMOR" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC_LINE"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="pic" id="_146574122930262">
+                <jpa:column name="PIC" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC_LINE" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="respond" id="_146574122930263">
+                <jpa:column name="RESPOND" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC_LINE" length="20"/>
+            </basic>
+            <basic optional="true" attribute-type="java.util.Date" visibile="true" name="tgl" id="_146574122930264">
+                <jpa:column name="TGL" unique="false" nullable="true" insertable="true" updatable="true" table="ZDOC_LINE"/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </basic>
+            <many-to-one optional="true" primaryKey="false" connected-entity-id="_14657412291683" connected-attribute-id="_146574122930132" visibile="true" name="zdocId" id="_146574122930365">
+                <join-column name="ZDOC_ID" unique="false" nullable="true" insertable="true" updatable="true"/>
+            </many-to-one>
+            <jpa:id attribute-type="Integer" visibile="true" name="zdocLineId" id="_146574122930259">
+                <jpa:column name="ZDOC_LINE_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZDOC_LINE"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZDOC_LINE"/>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="Zstatus" visibile="true" minimized="false" rootElement="_14657412288781" id="_14657412291689">
+        <jpa:attributes>
+            <basic optional="false" attribute-type="String" visibile="true" name="descript" id="_146574122930367">
+                <jpa:column name="DESCRIPT" unique="false" nullable="false" insertable="true" updatable="true" table="ZSTATUS" length="50"/>
+            </basic>
+            <basic optional="true" attribute-type="String" visibile="true" name="name" id="_146574122930368">
+                <jpa:column name="NAME" unique="false" nullable="true" insertable="true" updatable="true" table="ZSTATUS" length="20"/>
+            </basic>
+            <one-to-many own="false" collection-type="java.util.List" connected-entity-id="_14657412291683" connected-attribute-id="_146574122930029" visibile="true" name="zdocCollection" id="_146574122930369"/>
+            <jpa:id attribute-type="Integer" visibile="true" name="zstatusId" id="_146574122930366">
+                <jpa:column name="ZSTATUS_ID" unique="false" nullable="false" insertable="true" updatable="true" table="ZSTATUS"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZSTATUS">
+            <jpa:unique-constraint>
+                <jpa:column-name>DESCRIPT</jpa:column-name>
+            </jpa:unique-constraint>
+        </jpa:table>
+    </jpa:entity>
+    <jpa:entity xre="false" sm="false" abs="false" class="ZdocUsulan" visibile="true" minimized="false" rootElement="_14657412288781" id="_1465744318825">
+        <jpa:attributes>
+            <basic optional="true" attribute-type="String" visibile="true" name="ubagian" id="_146574457487594">
+                <jpa:column name="ubagian" unique="false" nullable="true" insertable="true" updatable="true" table="ZdocUsulan" length="255"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="udiubah" id="_146574467640795">
+                <jpa:column name="udiubah" unique="false" nullable="true" insertable="true" updatable="true" table="ZdocUsulan" length="255"/>
+            </basic>
+            <basic attribute-type="String" visibile="true" name="umenjadi" id="_146574472267196">
+                <jpa:column name="umenjadi" unique="false" nullable="true" insertable="true" updatable="true" table="ZdocUsulan" length="255"/>
+            </basic>
+            <basic optional="false" attribute-type="int" visibile="true" name="zdocid" id="_146574523079597">
+                <jpa:column name="zdocid" unique="false" nullable="false" insertable="true" updatable="true" table="ZdocUsulan" length="255"/>
+            </basic>
+            <jpa:id attribute-type="int" visibile="true" name="ZdocUsulanId" id="_146574431882992">
+                <jpa:column name="ZdocUsulanId" unique="true" nullable="false" insertable="true" updatable="true" table="ZdocUsulan"/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:table name="ZdocUsulan"/>
+    </jpa:entity>
+    <jpa:diagram>
+        <plane elementRef="_14657412288781">
+            <shape elementRef="_14657412290172">
+                <Bounds x="710.0" y="32.0" width="137.0" height="155.0"/>
+            </shape>
+            <shape elementRef="_14657412291683">
+                <Bounds x="245.0" y="32.0" width="161.0" height="462.0"/>
+            </shape>
+            <shape elementRef="_14657412291684">
+                <Bounds x="469.0" y="209.0" width="151.0" height="239.0"/>
+            </shape>
+            <shape elementRef="_14657412291685">
+                <Bounds x="469.0" y="32.0" width="160.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_14657412291686">
+                <Bounds x="710.0" y="209.0" width="137.0" height="273.0"/>
+            </shape>
+            <shape elementRef="_14657412291687">
+                <Bounds x="996.0" y="24.0" width="128.0" height="113.0"/>
+            </shape>
+            <shape elementRef="_14657412291688">
+                <Bounds x="32.0" y="187.0" width="148.0" height="210.0"/>
+            </shape>
+            <shape elementRef="_14657412291689">
+                <Bounds x="32.0" y="24.0" width="139.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_1465744318825">
+                <Bounds x="17.0" y="413.0" width="163.0" height="155.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

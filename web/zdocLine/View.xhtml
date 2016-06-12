@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ZdocLineViewDlg" widgetVar="ZdocLineViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewZdocLineTitle}" closeOnEscape="true">
+
+            <h:form id="ZdocLineViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{zdocLineController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_zdocLineId}"/>
+                        <h:outputText value="#{zdocLineController.selected.zdocLineId}" title="#{myBundle.ViewZdocLineTitle_zdocLineId}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_keterangan}"/>
+                        <h:outputText value="#{zdocLineController.selected.keterangan}" title="#{myBundle.ViewZdocLineTitle_keterangan}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_nomor}"/>
+                        <h:outputText value="#{zdocLineController.selected.nomor}" title="#{myBundle.ViewZdocLineTitle_nomor}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_pic}"/>
+                        <h:outputText value="#{zdocLineController.selected.pic}" title="#{myBundle.ViewZdocLineTitle_pic}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_respond}"/>
+                        <h:outputText value="#{zdocLineController.selected.respond}" title="#{myBundle.ViewZdocLineTitle_respond}"/>
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_tgl}"/>
+                        <h:outputText value="#{zdocLineController.selected.tgl}" title="#{myBundle.ViewZdocLineTitle_tgl}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewZdocLineLabel_zdocId}"/>
+                        <h:outputText value="#{zdocLineController.selected.zdocId.descript}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ZdocLineViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
